@@ -34,18 +34,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
   String girilenMetin="";
   int maxLine=1;
-  late FocusNode _fNode ;
+  late FocusNode _focusEdit ;
   late var messageController=TextEditingController();
 
   @override
   void initState() {
     super.initState();
 
-    _fNode=FocusNode();
+    _focusEdit=FocusNode();
 
-    _fNode.addListener((){
+    _focusEdit.addListener((){
       setState(() {
-        if(_fNode.hasFocus){
+        if(_focusEdit.hasFocus){
           maxLine = 2;
         }else{
           maxLine =1;
@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void dispose() {
-    _fNode.dispose();
+    _focusEdit.dispose();
     super.dispose();
   }
 
@@ -70,19 +70,19 @@ class _MyHomePageState extends State<MyHomePage> {
         ListView(
           children: <Widget>[
 
-            Divider(
+            const Divider(
               color: Colors.black,
             ),
 
-            SizedBox(height: 10.0,),
+            const SizedBox(height: 10.0,),
 
             Padding(
               padding: const EdgeInsets.only(left:50, right: 50, bottom: 20),
               child: TextField(
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10))),
-                    prefixIcon: Icon(Icons.text_fields),
+                    prefixIcon: const Icon(Icons.text_fields),
                     hintText: "Mesajınızı yazın",
                     filled: true,
                     fillColor: Colors.lightBlueAccent[100]
@@ -90,16 +90,16 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
 
-            Divider(
+            const Divider(
               color: Colors.black,
             ),
 
-            SizedBox(height: 10.0,),
+            const SizedBox(height: 10.0,),
 
             Padding(
               padding: const EdgeInsets.only(left:50, right: 50, bottom: 20),
               child: TextField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                   prefixIcon: Icon(Icons.arrow_right, size: 40),
@@ -113,27 +113,27 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
 
-            Divider(
+            const Divider(
               color: Colors.black,
             ),
 
-            SizedBox(height: 10.0,),
+            const SizedBox(height: 10.0,),
 
             Padding(
               padding: const EdgeInsets.only(left:50, right: 50, bottom: 20),
               child: TextField(
                 controller: messageController,
                 textInputAction: TextInputAction.done,
-                focusNode: _fNode,
+                focusNode: _focusEdit,
                 maxLines: maxLine,
                 autofocus: false,
 
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                   hintText: "Mesajınızı yazın",
                   suffixIcon: IconButton(
-                      icon: Icon(Icons.delete),
+                      icon: const Icon(Icons.delete),
                       onPressed: (){
                         setState(() {
                           messageController.clear();
@@ -144,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
 
-            Divider(
+            const Divider(
               color: Colors.black,
             ),
 
@@ -153,15 +153,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          FocusScope.of(context).requestFocus(_fNode);
+          FocusScope.of(context).requestFocus(_focusEdit);
         },
-        
+
           mini: true,
           backgroundColor: Colors.lightBlueAccent,
 
         tooltip: "En Son TextField'a Odaklan",
 
-        child: Icon(Icons.edit),
+        child: const Icon(Icons.edit),
 
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
